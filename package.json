@@ -1,0 +1,29 @@
+{
+  "name": "spacecube",
+  "version": "1.0.2",
+  "main": "SpaceCubeCLI.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && chmod +x ./dist/spacecube.js",
+    "cli": "./dist/spacecube.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/commander": "^2.12.0",
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^22.12.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.735.0",
+    "commander": "^13.1.0",
+    "mime-types": "^2.1.35"
+  },
+  "bin": {
+    "spacecube": "./dist/SpaceCubeCLI.js"
+  }
+}

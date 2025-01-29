@@ -1,0 +1,4 @@
+dist
+creds.json
+node_modules
+badcreds.json
