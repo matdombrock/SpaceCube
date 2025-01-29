@@ -35,10 +35,10 @@ example();
 
 *This is not intended to be the fastest or most robust S3 tool around. It's purpose is to stay simple and fill a niche for "indie" developers who don't want waste their weekends reading S3 SDK docs.*
 
-**Note: This project is currently download and uploads files synchronously which can be pretty slow for very large operations.**
+**Note: This project is currently downloading and uploading files synchronously which can be pretty slow for very large operations.**
 
 # Install
-To install `spacecube` as a dependency of you app do:
+To install `spacecube` as a dependency of your app do:
 ```
 npm install spacecube
 ```
