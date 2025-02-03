@@ -1,11 +1,11 @@
 {
   "name": "spacecube",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "SpaceCubeCLI.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && chmod +x ./dist/spacecube.js",
+    "build": "tsc",
     "cli": "./dist/spacecube.js",
     "clean": "rm -rf dist"
   },
