@@ -1,6 +1,6 @@
 {
   "name": "spacecube",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "SpaceCubeCLI.js",
   "type": "module",
   "scripts": {
