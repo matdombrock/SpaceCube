@@ -54,7 +54,7 @@ type GetOptions = {
 type PutOptions = {
     bucket: string;
     remotePath: string;
-    data: any;
+    data: string | Buffer | Uint8Array;
     publicAccess?: boolean;
     mimeTypeOverride?: string;
 }
