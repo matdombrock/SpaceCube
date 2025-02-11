@@ -296,7 +296,7 @@ Tips:
         return localPath;
     }
 
-    private makeSpaceCube(credsPath: string): SpaceCube.SpaceCube {
+    private makeSpaceCube(credsPath: string): SpaceCube.Cube {
         credsPath = this.magicPath(credsPath);
         if (!fs.existsSync(credsPath)) {
             console.error("Credentials file not found:");
@@ -305,7 +305,7 @@ Tips:
         }
         try {
             const creds = JSON.parse(fs.readFileSync(credsPath, "utf-8")) as SpaceCube.Creds;
-            return new SpaceCube.SpaceCube(creds);
+            return new SpaceCube.Cube(creds);
         }
         catch (e) {
             console.error("Credentials file is not a valid JSON file:");

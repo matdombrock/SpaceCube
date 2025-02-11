@@ -1,7 +1,7 @@
 {
   "name": "spacecube",
-  "version": "1.0.4",
-  "main": "SpaceCubeCLI.js",
+  "version": "1.0.5",
+  "main": "SpaceCube.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

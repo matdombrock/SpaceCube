@@ -101,14 +101,14 @@ Commands:
 Include the library in your project:
 ```ts
 // Get a list of files at myBucket:myDir/
-import * as Space from "./SpaceCube";
+import * as Space from "spacecube";
 const creds: Space.Creds = {
   "s3_endpoint": "https://sfo3.digitaloceanspaces.com",
   "s3_region": "us-east-1",
   "s3_access_key": "DO.................",
   "s3_secret_key": "dZ................." 
 }
-const space = new Space.SpaceCube(creds);
+const space = new Space.Cube(creds);
 async function example() {
   const opt: Space.ListOptions = {
     bucket: 'myBucket';

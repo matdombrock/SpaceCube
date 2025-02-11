@@ -59,7 +59,7 @@ type PutOptions = {
     mimeTypeOverride?: string;
 }
 
-class SpaceCube {
+class Cube {
     private _ogDirectory: string | null = null;
     private s3Client: S3SDK.S3;
 
@@ -437,7 +437,7 @@ class SpaceCube {
 }
 
 export {
-    SpaceCube, 
+    Cube, 
     Creds,
     Res,
     UploadOptions,
