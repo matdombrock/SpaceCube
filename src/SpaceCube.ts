@@ -60,13 +60,12 @@ type PutOptions = {
 }
 
 class Cube {
-    private _ogDirectory: string | null = null;
     private s3Client: S3SDK.S3;
 
     constructor(creds: Creds) {
         this.s3Client = new S3SDK.S3({
             forcePathStyle: false,
-            endpoint: creds.s3_endpoint,
+            endpoint: creds.s3_endpoint === "" ? undefined : creds.s3_endpoint,
             region:creds.s3_region,
             credentials: {
                 accessKeyId: creds.s3_access_key,

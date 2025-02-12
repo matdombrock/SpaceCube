@@ -186,6 +186,9 @@ class SpaceCubeCLI {
             .option("-r, --recursive", "Download all files in a directory", false)
             .option("-v, --verbose", "Verbose output", false)
             .action(async (bucket, remotePath, localPath, options) => {
+                if (remotePath === '.' || remotePath === '/') {
+                    remotePath = '';
+                }
                 if (localPath === '.') {
                     localPath += remotePath;
                 }
@@ -215,7 +218,7 @@ class SpaceCubeCLI {
             .option("-r, --recursive", "Delete all files in a directory", false)
             .option("-v, --verbose", "Verbose output", false)
             .action(async (bucket, remotePath, options) => {
-                if (remotePath === '.') remotePath = '';
+                if (remotePath === '.' || remotePath === '/') remotePath = '';
                 const spacecube = this.makeSpaceCube(options.creds);
                 const opt: SpaceCube.DeleteOptions = {
                     bucket,
