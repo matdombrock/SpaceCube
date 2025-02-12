@@ -116,14 +116,14 @@ class SpaceCubeCLI {
             .description("list files")
             .argument("<bucket>", "Bucket name")
             .option("-c, --creds <localPath>", "Credentials path", this.defaultCredsPath)
-            .option("-d, --dir <remotePath>", "Directory listing", '')
+            .option("-f, --filter <filter string>", "Directory listing", '')
             .option("-r, --raw", "Do not stringify")
             .option("-a, --all", "Show all data")
             .action(async (bucket, options) => {
                 const spacecube = this.makeSpaceCube(options.creds);
                 const opt: SpaceCube.ListOptions = {
                     bucket,
-                    remotePath: options.dir,
+                    filter: options.filter,
                 };
                 let res = await spacecube.list(opt);
                 if (res.rc !== 0) {

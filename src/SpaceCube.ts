@@ -35,7 +35,7 @@ type DeleteOptions = {
 
 type ListOptions = {
     bucket: string;
-    remotePath?: string; // Filter by path
+    filter?: string; // Filter by path
 }
 
 type DownloadOptions = {
@@ -44,6 +44,7 @@ type DownloadOptions = {
     localPath: string;
     recursive?: boolean;
     verbose?: boolean;
+    filter?: string; // Filter by path
 }
 
 type GetOptions = {
@@ -125,7 +126,7 @@ class Cube {
         let out: Res = {rc: 0};
         const res = await this.s3Client.send(new S3SDK.ListObjectsV2Command({
             Bucket: opt.bucket,
-            Prefix: opt.remotePath
+            Prefix: opt.filter
         }))
         .catch((err) => {
             out.rc = 1;
@@ -279,7 +280,7 @@ class Cube {
         let out: Res = {rc: 0};
         const optList: ListOptions = {
             bucket: opt.bucket,
-            remotePath: opt.remotePath
+            filter: opt.filter
         };
         const res = await this.list(optList)
         .catch((err) => {
