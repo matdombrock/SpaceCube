@@ -1,9 +1,11 @@
 # SpaceCube
-SpaceCube is a wrapper API and CLI tool for working with Digital Ocean Spaces or other S3 compatible services. It can be used stand-alone as a CLI application or used as a library in your own JS/TS projects. 
 
-The CLI and the API share nearly the exact same interface which makes it straight-forward to prototype workflows with the CLI and then formalize them into API calls. 
+SpaceCube is a wrapper API and CLI tool for working with Digital Ocean Spaces or other S3 compatible services. It can be used stand-alone as a CLI application or used as a library in your own JS/TS projects.
+
+The CLI and the API share nearly the exact same interface which makes it straight-forward to prototype workflows with the CLI and then formalize them into API calls.
 
 **CLI Example**
+
 ```bash
 % spacecube buckets
 [
@@ -16,7 +18,9 @@ The CLI and the API share nearly the exact same interface which makes it straigh
 Uploading dist/SpaceCube.js
 Uploading dist/SpaceCubeCLI.js
 ```
+
 **API Example:**
+
 ```ts
 import * as Space from "./SpaceCube";
 const creds: Space.Creds = {
@@ -38,28 +42,39 @@ example();
 **Note: This project is currently downloading and uploading files synchronously which can be pretty slow for very large operations.**
 
 # Install
+
 To install `spacecube` as a dependency of your app do:
+
 ```
 npm install spacecube
 ```
+
 If you want the CLI as a globally runnable command do:
+
 ```
 npm install -g spacecube
-``` 
+```
+
 You can also run `spacecube` via `npx`:
+
 ```
 npx spacecube
 ```
+
 If you think `spacecube` is too long to type do something like:
+
 ```
 alias s3=spacecube
 ```
 
 # Using the CLI
+
 By default the cli is available at `spacecube` when this package is installed globally.
 
 ## Authentication
+
 This program needs a credentials `json` file to authenticate. The file looks something like this:
+
 ```json
 {
     "s3_endpoint": "https://sfo3.digitaloceanspaces.com",
@@ -69,13 +84,14 @@ This program needs a credentials `json` file to authenticate. The file looks som
 }
 ```
 
-- The CLI will look in one of two places for your credentials `json` file. 
-    - By default it will look for `~/.spacecube.json`.
-    - If the `-c` flag is used it will look for the path following the flag.
+- The CLI will look in one of two places for your credentials `json` file.
+  - By default it will look for `~/.spacecube.json`.
+  - If the `-c` flag is used it will look for the path following the flag.
 
 You can create a new credentials file with the `auth` command or be guided through creating it with the `auth-wiz` command.
 
 ## Usage
+
 ```
 Options:
   -V, --version                                         output the version number
@@ -97,8 +113,11 @@ Commands:
   ```
 
 # Using the API
+
 ## Basic Example
+
 Include the library in your project:
+
 ```ts
 // Get a list of files at myBucket:myDir/
 import * as Space from "spacecube";
@@ -119,8 +138,11 @@ async function example() {
 }
 example();
 ```
+
 ## Credentials
+
 The API takes credentials in the same format as the CLI. The API constructor expects an object like this:
+
 ```ts
 type Creds = {
     s3_endpoint: string;
@@ -129,8 +151,11 @@ type Creds = {
     s3_secret_key: string;
 };
 ```
+
 ## API Responses
+
 Calls to the API always return an object like this:
+
 ```ts
 type Res = {
     rc: number;
@@ -138,27 +163,51 @@ type Res = {
     err?: any;
 };
 ```
+
 - `rc` - the return code (0 == ok)
 - `data?` - the return data (if any)
 - `err?` - the error that was encountered (if any)
 
 ## API Methods
+
 All API methods are `async`.
+
 ### `createBucket(bucket: string)`
+
 Creates a new bucket with the given bucket name.
+
 ### `deleteBucket(bucket: string)`
+
 Delete a bucket with the given name.
+
 ### `listBuckets()`
+
 Returns a list of your buckets.
+
 ### `list(opt: ListOptions)`
+
 ```ts
 type ListOptions = {
     bucket: string;
     remotePath?: string; // Filter by path
 }
 ```
-Returns a list of items in the given bucket.
+
+Returns a list of items in the given bucket (1k item limit).
+
+### `listAll(opt: ListOptions)`
+
+```ts
+type ListOptions = {
+    bucket: string;
+    remotePath?: string; // Filter by path
+}
+```
+
+Returns a list of items in the given bucket. Slower than `list` but has no limit on how many items can be returned.
+
 ### `upload(opt: UploadOptions)`
+
 ```ts
 type UploadOptions = {
     bucket: string;
@@ -170,8 +219,11 @@ type UploadOptions = {
     verbose?: boolean;
 }
 ```
-Uploads a file or directory to the given bucket. Use the `recursive` option to upload directories. 
+
+Uploads a file or directory to the given bucket. Use the `recursive` option to upload directories.
+
 ### `download(opt: DownloadOptions)`
+
 ```ts
 type DownloadOptions = {
     bucket: string;
@@ -181,8 +233,11 @@ type DownloadOptions = {
     verbose?: boolean;
 }
 ```
+
 Downloads a file or directory from the given bucket. Use the `recursive` option to download directories.
+
 ### `delete(opt: DeleteOptions)`
+
 ```ts
 type DeleteOptions = {
     bucket: string;
@@ -191,16 +246,22 @@ type DeleteOptions = {
     verbose?: boolean;
 }
 ```
+
 Deletes a file or directory from the given bucket. Use the `recursive` option to download directories.
+
 ### `get(opt: GetOptions)`
+
 ```ts
 type GetOptions = {
     bucket: string;
     remotePath: string;
 }
 ```
+
 Get the file contents and return it. Does not "download" the file.
+
 ### `put(opt: PutOptions)`
+
 ```ts
 type PutOptions = {
     bucket: string;
@@ -210,4 +271,6 @@ type PutOptions = {
     mimeTypeOverride?: string;
 }
 ```
+
 Put some data directly from RAM into the bucket. Does not "upload" a file.
+
