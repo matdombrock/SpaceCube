@@ -1,6 +1,6 @@
 {
   "name": "spacecube",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "./dist/SpaceCube.js",
   "type": "module",
   "scripts": {
